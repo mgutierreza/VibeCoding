@@ -4,6 +4,9 @@ resource "aws_launch_template" "dev_flexgateway_lt" {
   image_id      = var.ami_id
   instance_type = "t3.micro"
   key_name      = var.key_pair
+  iam_instance_profile {
+    name = aws_iam_instance_profile.ec2_profile.name
+  }
 
   network_interfaces {
     associate_public_ip_address = true
